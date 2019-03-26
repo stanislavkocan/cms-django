@@ -32,6 +32,7 @@ BASE_URL = "http://localhost:8000"
 
 INSTALLED_APPS = [
     "cms.apps.CmsConfig",
+    "federation.apps.FederationConfig",
     "gvz_api.apps.GvzApiConfig",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -204,6 +205,18 @@ LOGGING = {
         "auth": {"handlers": ["console", "authlog", "syslog"], "level": "INFO",},
     },
 }
+
+FEDERATION = {
+    'name': 'thomas-cms',
+    'domain': 'localhost:8000',
+    'seed_contacts': []
+}
+# todo: change to this:
+# FEDERATION = {
+#    'name': 'My Integreat CMS',
+#    'domain': 'my-domain.com',
+#    'seed_contacts': ['cms.integreat-app.de'],
+# }
 
 STATICFILES_FINDERS = (
     "django.contrib.staticfiles.finders.FileSystemFinder",
