@@ -53,6 +53,8 @@ class Region(models.Model):
     :param feedback: Feedback to this region
     :param event_list_feedback: Feedback to the events of this region
     :param offer_list_feedback: Feedback to the offers of this region
+    :param documents: The documents of this region
+    :param media_directories: The document directories of this region
     """
 
     name = models.CharField(max_length=200)

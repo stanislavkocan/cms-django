@@ -27,6 +27,7 @@ class Language(models.Model):
     :param event_translations: All event translations in this language
     :param poi_translations: All poi translations in this language
     :param push_notification_translations: All push notification translations in this language
+    :param document_meta_data: All meta data of documents in this language
     """
 
     code = models.CharField(
