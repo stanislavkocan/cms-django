@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-30 11:58+0000\n"
+"POT-Creation-Date: 2020-07-30 16:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Integreat <info@integreat-app.de>\n"
 "Language-Team: Integreat <info@integreat-app.de>\n"
@@ -346,9 +346,9 @@ msgid "The new passwords do not match."
 msgstr "Die Passwörter stimmen nicht überein."
 
 #: templates/_base.html:11 templates/language_tree/language_tree.html:15
-#: templates/media/media_list.html:8 templates/offers/offer_list.html:15
-#: templates/pages/page_tree.html:33 templates/pages/page_tree_archived.html:21
-#: templates/pois/poi_list.html:31 templates/pois/poi_list_archived.html:21
+#: templates/offers/offer_list.html:15 templates/pages/page_tree.html:33
+#: templates/pages/page_tree_archived.html:21 templates/pois/poi_list.html:31
+#: templates/pois/poi_list_archived.html:21
 #: templates/push_notifications/push_notification_list.html:9
 #: templates/regions/region_list.html:14 templates/users/admin/list.html:14
 #: templates/users/region/list.html:9
@@ -852,7 +852,7 @@ msgstr "Diese Änderung erfordert keine angepasste Übersetzung"
 msgid "Settings for all translations"
 msgstr "Einstellungen für alle Übersetzungen"
 
-#: templates/events/event_form.html:188 templates/media/media_list.html:23
+#: templates/events/event_form.html:188
 msgid "Date"
 msgstr "Datum"
 
@@ -1205,21 +1205,13 @@ msgstr "Absenden"
 msgid "Return"
 msgstr "Zurück"
 
-#: templates/media/media_list.html:12
+#: templates/media/media_list.html:14
+msgid "Mediathek"
+msgstr ""
+
+#: templates/media/media_list.html:18
 msgid "Upload File"
 msgstr "Datei hochladen"
-
-#: templates/media/media_list.html:22
-#: templates/offer_templates/offer_template_list.html:24
-#: templates/offers/offer_list.html:31
-#: templates/organizations/organization_list.html:24
-#: templates/regions/region_list.html:29 templates/roles/list.html:24
-msgid "Name"
-msgstr "Name"
-
-#: templates/media/media_list.html:24
-msgid "Operations"
-msgstr "Optionen"
 
 #: templates/offer_templates/offer_template_form.html:13
 #, python-format
@@ -1301,6 +1293,13 @@ msgstr "Angebots-Vorlagen"
 #: templates/offer_templates/offer_template_list.html:14
 msgid "Create offer template"
 msgstr "Neue Angebots-Vorlage erstellen"
+
+#: templates/offer_templates/offer_template_list.html:24
+#: templates/offers/offer_list.html:31
+#: templates/organizations/organization_list.html:24
+#: templates/regions/region_list.html:29 templates/roles/list.html:24
+msgid "Name"
+msgstr "Name"
 
 #: templates/offer_templates/offer_template_list.html:25
 #: templates/organizations/organization_list.html:25
