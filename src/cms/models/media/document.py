@@ -53,3 +53,7 @@ class Document(models.Model):
         """
 
         default_permissions = ()
+        permissions = (
+            ("manage_documents", "Can manage documents"),
+            ("can_delete_documents", "Can delete documents"),
+        )
