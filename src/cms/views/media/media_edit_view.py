@@ -5,7 +5,7 @@ from django.views.generic import TemplateView
 
 from ...decorators import region_permission_required
 from ...forms.media import DocumentForm
-from ...models import Document, Region
+from ...models import Region
 from ...utils.file_utils import save_file
 
 
@@ -21,8 +21,7 @@ class MediaEditView(TemplateView):
         document_id = kwargs.get("document_id")
         form = DocumentForm()
         if document_id != "0":
-            document = Document.objects.get(pk=document_id)
-            form = DocumentForm(instance=document)
+            form = DocumentForm()
 
         return render(
             request,

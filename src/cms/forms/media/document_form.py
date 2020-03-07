@@ -1,13 +1,9 @@
 from django import forms
 
-from ...models import Document
 
-
-class DocumentForm(forms.ModelForm):
+class DocumentForm(forms.Form):
     """
     Form for creating and modifying document objects
     """
 
-    class Meta:
-        model = Document
-        fields = ()
+    upload = forms.FileField()

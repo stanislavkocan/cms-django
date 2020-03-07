@@ -27,13 +27,13 @@ class Document(models.Model):
     :param meta_data: The meta properties of this document
     """
 
-    file = models.ForeignKey(File, related_name="documents", on_delete=models.CASCADE)
+    file = models.ForeignKey(
+        File, related_name="documents", on_delete=models.CASCADE, null=True
+    )
     path = models.ForeignKey(
-        Directory, related_name="documents", on_delete=models.PROTECT
+        Directory, related_name="documents", on_delete=models.PROTECT, null=True
     )
-    region = models.ForeignKey(
-        Region, related_name="documents", on_delete=models.CASCADE
-    )
+    region = models.ForeignKey(Region, on_delete=models.CASCADE, null=True)
     uploaded_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
