@@ -124,7 +124,7 @@
 		        {% trans 'Statistics' %}
 	        </a>
 			{% endif %}
-			<a href="{% url 'media' region_slug=region.slug %}" class="relative block text-gray-300 hover:text-gray-600 hover:bg-integreat {% if current_menu_item == 'media' %}active{% endif %}">
+			<a href="{% url 'media' region_slug=region.slug directory_id=0 %}" class="relative block text-gray-300 hover:text-gray-600 hover:bg-integreat {% if current_menu_item == 'media' %}active{% endif %}">
 	            <i data-feather='file' class="absolute"></i>
 		        {% trans 'Media Library' %}
 	        </a>
