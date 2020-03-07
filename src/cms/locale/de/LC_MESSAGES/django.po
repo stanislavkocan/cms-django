@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-30 20:21+0000\n"
+"POT-Creation-Date: 2020-07-30 20:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Integreat <info@integreat-app.de>\n"
 "Language-Team: Integreat <info@integreat-app.de>\n"
@@ -1212,6 +1212,10 @@ msgstr "Zurück"
 #: templates/media/media_list.html:22
 msgid "Upload File"
 msgstr "Datei hochladen"
+
+#: templates/media/media_list.html:35
+msgid "Home"
+msgstr "Home"
 
 #: templates/offer_templates/offer_template_form.html:13
 #, python-format
@@ -2522,7 +2526,7 @@ msgid "Language tree node was created successfully."
 msgstr "Sprach-Baum wurde erfolgreich erstellt."
 
 #: views/language_tree/language_tree_node_view.py:77
-#: views/media/create_directory_view.py:53
+#: views/media/create_directory_view.py:56
 #: views/offer_templates/offer_template_view.py:49
 #: views/organizations/organization_view.py:47 views/pages/page_sbs_view.py:124
 #: views/pages/page_view.py:120
@@ -2828,6 +2832,18 @@ msgid ""
 msgstr ""
 "Ein Benutzer muss entweder Mitarbeiter/Super-Administrator sein, oder "
 "mindestens einer Region zugewiesen sein."
+
+#~ msgid "Extra template saved successfully"
+#~ msgstr "Extra-Vorlage wurde erfolgreich gespeichert."
+
+#~ msgid "Extra template created successfully"
+#~ msgstr "Extra-Vorlage wurde erfolgreich erstellt."
+
+#~ msgid "was successfully activated."
+#~ msgstr "wurde erfolgreich aktiviert."
+
+#~ msgid "was successfully deactivated."
+#~ msgstr "wurde erfolgreich deaktiviert."
 
 #~| msgid "Export"
 #~ msgid "Export XLIFF"
