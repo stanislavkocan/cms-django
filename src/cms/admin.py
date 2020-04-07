@@ -5,7 +5,7 @@ File routing to the admin region
 
 from django.contrib import admin
 
-from .models import Event
+from .models import Event, Configuration
 from .models import EventTranslation
 from .models import Offer
 from .models import OfferTemplate
@@ -32,3 +32,4 @@ admin.site.register(POI)
 admin.site.register(POITranslation)
 admin.site.register(Region)
 admin.site.register(RecurrenceRule)
+admin.site.register(Configuration)
