@@ -185,14 +185,14 @@
 			    <i data-feather="flag" class="absolute"></i>
 			    {% trans 'Languages' %}
 		    </a>
-	    <a href="{% url 'users' %}" class="relative block text-gray-300 hover:text-gray-600 hover:bg-integreat {% if current_menu_item == 'users' %}active{% endif %}">
-		    <i data-feather="users" class="absolute"></i>
-		    {% trans 'Users' %}
-	    </a>
-	    <a href="{% url 'roles' %}" class="relative block text-gray-300 hover:text-gray-600 hover:bg-integreat {% if current_menu_item == 'roles' %}active{% endif %}">
-		    <i data-feather="key" class="absolute"></i>
-		    {% trans 'Roles' %}
-	    </a>
+            <a href="{% url 'users' %}" class="relative block text-gray-300 hover:text-gray-600 hover:bg-integreat {% if current_menu_item == 'users' %}active{% endif %}">
+                <i data-feather="users" class="absolute"></i>
+                {% trans 'Users' %}
+            </a>
+            <a href="{% url 'roles' %}" class="relative block text-gray-300 hover:text-gray-600 hover:bg-integreat {% if current_menu_item == 'roles' %}active{% endif %}">
+                <i data-feather="key" class="absolute"></i>
+                {% trans 'Roles' %}
+            </a>
 		    <a href="{% url 'organizations' %}" class="relative block text-gray-300 hover:text-gray-600 hover:bg-integreat {% if current_menu_item == 'organizations' %}active{% endif %}">
 			    <i data-feather="umbrella" class="absolute"></i>
 			    {% trans 'Organizations' %}
@@ -205,6 +205,11 @@
 			    <i data-feather="thumbs-up" class="absolute"></i>
 			    {% trans 'Feedback' %}
 		    </a>
+		    <a href="{% url 'federation' %}" class="relative block text-gray-300 hover:text-gray-600 hover:bg-integreat {% if current_menu_item == 'federation' %}active{% endif %}">
+			    <!--todo: icon-->
+		        <i data-feather="thumbs-up" class="absolute"></i>
+			    {% trans 'Federation' %}
+            </a>
 		    <a href="{% url 'admin_settings' %}" class="relative block text-gray-300 hover:text-gray-600 hover:bg-integreat {% if current_menu_item == 'admin_settings' %}active{% endif %}">
 			    <i data-feather="sliders" class="absolute"></i>
 			    {% trans 'Settings' %}
