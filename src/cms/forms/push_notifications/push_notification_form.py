@@ -23,7 +23,7 @@ class PushNotificationTranslationForm(forms.ModelForm):
 
     class Meta:
         model = PushNotificationTranslation
-        fields = ["title", "text"]
+        fields = ["title", "text", "language"]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
