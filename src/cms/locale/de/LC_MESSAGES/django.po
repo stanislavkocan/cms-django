@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-03 14:48+0000\n"
+"POT-Creation-Date: 2020-08-14 15:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Integreat <info@integreat-app.de>\n"
 "Language-Team: Integreat <info@integreat-app.de>\n"
@@ -409,7 +409,7 @@ msgstr "Medienbibliothek"
 msgid "Pages"
 msgstr "Seiten"
 
-#: templates/_base.html:135 templates/events/event_list.html:14
+#: templates/_base.html:135 templates/events/event_list.html:26
 #: templates/regions/region_form.html:206
 msgid "Events"
 msgstr "Veranstaltungen"
@@ -719,8 +719,8 @@ msgstr "Ja, diese Veranstaltung wiederherstellen."
 msgid "Edit event \"%(event_title)s\""
 msgstr "Event \"%(event_title)s\" bearbeiten"
 
-#: templates/events/event_form.html:52 templates/events/event_list.html:49
-#: templates/events/event_list.html:55
+#: templates/events/event_form.html:52 templates/events/event_list.html:61
+#: templates/events/event_list.html:67
 #: templates/events/event_list_archived.html:25
 #: templates/events/event_list_archived.html:31
 #: templates/pages/page_form.html:53 templates/pages/page_tree.html:61
@@ -792,7 +792,7 @@ msgstr "Übersetzung fehlt"
 msgid "Create Translation"
 msgstr "Übersetzung erstellen"
 
-#: templates/events/event_form.html:145 templates/events/event_list.html:47
+#: templates/events/event_form.html:145 templates/events/event_list.html:59
 #: templates/events/event_list_archived.html:23
 #: templates/pages/page_form.html:148 templates/pages/page_sbs.html:79
 #: templates/pages/page_sbs.html:146 templates/pages/page_sbs.html:151
@@ -801,7 +801,7 @@ msgstr "Übersetzung erstellen"
 msgid "Version"
 msgstr "Version"
 
-#: templates/events/event_form.html:147 templates/events/event_list.html:48
+#: templates/events/event_form.html:147 templates/events/event_list.html:60
 #: templates/events/event_list_archived.html:24
 #: templates/pages/page_form.html:150 templates/pages/page_sbs.html:81
 #: templates/pages/page_sbs.html:148 templates/pages/page_sbs.html:153
@@ -866,13 +866,13 @@ msgid "Date"
 msgstr "Datum"
 
 #: templates/events/event_form.html:191 templates/events/event_form.html:205
-#: templates/events/event_list.html:68
+#: templates/events/event_list.html:80
 #: templates/events/event_list_archived.html:44
 msgid "Start"
 msgstr "Beginn"
 
 #: templates/events/event_form.html:195 templates/events/event_form.html:209
-#: templates/events/event_list.html:69
+#: templates/events/event_list.html:81
 #: templates/events/event_list_archived.html:45
 msgid "End"
 msgstr "Ende"
@@ -1029,28 +1029,28 @@ msgstr "Email"
 msgid "Hint"
 msgstr "Tipp"
 
-#: templates/events/event_list.html:19
+#: templates/events/event_list.html:31
 #: templates/events/event_list_archived.html:14
 msgid "Archived events"
 msgstr "Archivierte Veranstaltungen"
 
-#: templates/events/event_list.html:36
+#: templates/events/event_list.html:48
 msgid "Create event"
 msgstr "Veranstaltung erstellen"
 
-#: templates/events/event_list.html:46
+#: templates/events/event_list.html:58
 #: templates/events/event_list_archived.html:22
 #: templates/pages/page_tree_archived.html:30 templates/pois/poi_list.html:47
 #: templates/pois/poi_list_archived.html:30
 msgid "ID"
 msgstr "ID"
 
-#: templates/events/event_list.html:67
+#: templates/events/event_list.html:79
 #: templates/events/event_list_archived.html:43
 msgid "Event location"
 msgstr "Veranstaltungsort"
 
-#: templates/events/event_list.html:70
+#: templates/events/event_list.html:82
 #: templates/events/event_list_archived.html:46
 #: templates/languages/language_list.html:31
 #: templates/offer_templates/offer_template_list.html:29
@@ -1061,7 +1061,7 @@ msgstr "Veranstaltungsort"
 msgid "Options"
 msgstr "Optionen"
 
-#: templates/events/event_list.html:83
+#: templates/events/event_list.html:95
 msgid "No events available yet."
 msgstr "Noch keine Veranstaltungen vorhanden."
 
