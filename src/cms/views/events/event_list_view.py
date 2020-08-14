@@ -8,6 +8,7 @@ from django.views.generic import TemplateView
 
 from ...decorators import region_permission_required
 from ...models import Language, Region, Event
+from ...forms.events import EventFilterForm
 
 
 @method_decorator(login_required, name="dispatch")
@@ -60,6 +61,8 @@ class EventListView(LoginRequiredMixin, PermissionRequiredMixin, TemplateView):
         # all other languages of current region
         languages = region.languages
 
+        event_filter_form = EventFilterForm()
+
         return render(
             request,
             self.template_name,
@@ -69,5 +72,6 @@ class EventListView(LoginRequiredMixin, PermissionRequiredMixin, TemplateView):
                 "archived_count": Event.archived_count(region_slug),
                 "language": language,
                 "languages": languages,
+                "filter_form": event_filter_form,
             },
         )

@@ -2,6 +2,8 @@
 {% load i18n %}
 {% load static %}
 {% load content_filters %}
+{% load widget_tweaks %}
+{% load poi_filters %}
 
 {% block css %}
     <link href="{% static 'tablesort/tablesort.css' %}" rel="stylesheet" type="text/css">
@@ -27,7 +29,8 @@
             </div>
             <div class="w-1/2 flex flex-wrap flex-col justify-center">
                 <div class="flex flex-wrap justify-end">
-                    <a href="{% url 'events_archived' region_slug=region.slug language_code=language.code %}" class="font-bold text-xs text-gray-800 block pb-2 hover:underline">
+                    <a href="{% url 'events_archived' region_slug=region.slug language_code=language.code %}"
+                       class="font-bold text-xs text-gray-800 block pb-2 hover:underline">
                         {% trans 'Archived events' %}
                         <span class="inline-block rounded-full bg-integreat text-gray-800 px-2 py-1 text-xs font-bold">
                             {{ archived_count }}
@@ -39,17 +42,86 @@
         <div class="flex flex-wrap">
             <form class="table-search relative w-1/2">
                 <i data-feather="search" class="absolute"></i>
-                <input type="search" placeholder="{% trans Search %}" class="h-full pl-10 pr-4 rounded shadow">
+                <input type="search" placeholder="{% trans 'Search' %}" class="h-full pl-10 pr-4 rounded shadow">
             </form>
-            {% if region.default_language == language %}
             <div class="w-1/2 flex flex-wrap justify-end">
-                <a href="{% url 'new_event' region_slug=region.slug language_code=language.code %}"
-                   class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                    {% trans 'Create event' %}
-                </a>
+                <button id="filter-toggle"
+                        class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-3">
+                    {% trans 'Filter events' %}
+                </button>
+                {% if region.default_language == language %}
+                    <a href="{% url 'new_event' region_slug=region.slug language_code=language.code %}"
+                       class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                        {% trans 'Create event' %}
+                    </a>
+                {% endif %}
             </div>
-            {% endif %}
         </div>
+    </div>
+    <div id="filter-form-container" class="hidden w-full mt-4 rounded border border-solid border-gray-200 shadow bg-white">
+        <form method="post">
+            {% csrf_token %}
+            <div class="flex flex-wrap p-4 items-start">
+                <div class="w-1/3 pr-6">
+                    <h3 class="font-bold mb-3">{% trans 'Date and time' %}</h3>
+                    <div class="flex flex-wrap mb-2 items-end">
+                        <div class="w-1/2 pr-1">
+                            <label for="after_date" class="mb-2 block font-bold text-sm">{% trans 'Not before' %}</label>
+                            {% render_field filter_form.after_date|add_error_class:"border-red-500" class="appearance-none block w-full bg-gray-200 text-gray-600 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-400" %}
+                        </div>
+                        <div class="w-1/2 pl-1">
+                            {% render_field filter_form.after_time|add_error_class:"border-red-500" class="appearance-none block w-full bg-gray-200 text-gray-600 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-400" %}
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap items-end">
+                        <div class="w-1/2 pr-1">
+                            <label for="before_date" class="mb-2 block font-bold text-sm">{% trans 'Not after' %}</label>
+                            {% render_field filter_form.before_date|add_error_class:"border-red-500" class="appearance-none block w-full bg-gray-200 text-gray-600 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-400" %}
+                        </div>
+                        <div class="w-1/2 pl-1">
+                            {% render_field filter_form.before_time|add_error_class:"border-red-500" class="appearance-none block w-full bg-gray-200 text-gray-600 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-400" %}
+                        </div>
+                    </div>
+                </div>
+                <div class="w-1/3 pr-6">
+                    <h3 class="font-bold mb-3">{% trans 'Status' %}</h3>
+                    <div class="relative">
+                        {% render_field filter_form.status class="leading-normal rounded" %}
+                    </div>
+                    <h3 class="font-bold mb-3 pt-4">{% trans 'Location' %}</h3>
+                    <div class="relative my-2">
+                        <input id="poi-query-input" type="search" autocomplete="off" class="no-new-poi pr-8 appearance-none block w-full bg-gray-200 text-gray-600 placeholder-gray-600 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-400" placeholder="{% trans 'Search' %}" data-url="{% url 'search_poi_ajax' %}" data-region-slug="{{ region.slug }}" data-default-placeholder="{% trans 'Search' %}">
+                        <div class="absolute inset-y-0 right-0 flex items-center px-2 text-gray-800">
+                            <button id="poi-remove" title="{% trans 'Empty query input' %}">
+                                <i data-feather="trash-2" class="h-5 w-5"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <input name="poi_id" id="poi-id" class="hidden" value="-1" readonly>
+                    <div class="relative" id="poi-query-result">
+                        {% include 'events/_poi_query_result.html' %}
+                    </div>
+                </div>
+                <div class="w-1/3">
+                    <h3 class="font-bold mb-3">{% trans 'All day events' %}</h3>
+                    <div class="flex flex-wrap">
+                        {% render_field filter_form.all_day|add_error_class:"border-red-500" class="leading-normal rounded" %}
+                    </div>
+                    <h3 class="font-bold mb-3 pt-4">{% trans 'Recurring events' %}</h3>
+                    <div class="flex flex-wrap">
+                        {% render_field filter_form.recurring|add_error_class:"border-red-500" class="leading-normal rounded" %}
+                    </div>
+                </div>
+            </div>
+            <div class="w-full flex p-4 justify-end">
+                <button type="button" id="filter-reset"
+                        class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-3">
+                    {% trans 'Reset filter' %}
+                </button>
+                <input type="submit" name="filter" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-4 rounded"
+                       value="{% trans 'Apply filter' %}"/>
+            </div>
+        </form>
     </div>
     <div class="table-listing">
         <table id="event-list" class="sort w-full mt-4 rounded border border-solid border-gray-200 shadow bg-white">
@@ -70,10 +142,10 @@
                 <th class="text-sm text-left uppercase py-3 px-2 no-sort" data-sort-method="none">
                     <div class="lang-grid flags">
                         {% for lang in languages %}
-		                    <a href="{% url 'events' region_slug=region.slug language_code=lang.code %}">
-			                    <img src="{% static '' %}images/flags/{{ lang.code }}.png" title="{{ lang.name }}" />
-		                    </a>
-	                    {% endfor %}
+                            <a href="{% url 'events' region_slug=region.slug language_code=lang.code %}">
+                                <img src="{% static '' %}images/flags/{{ lang.code }}.png" title="{{ lang.name }}"/>
+                            </a>
+                        {% endfor %}
                     </div>
                 </th>
                 <th class="text-sm text-left uppercase py-3 px-2">{% trans 'Event location' %}</th>
@@ -110,8 +182,20 @@
     <script src="{% static 'tablesort/dist/sorts/tablesort.number.min.js' %}"></script>
 {% endblock %}
 {% block javascript_nocompress %}
+    <script src="{% static 'js/events/event_query_pois.js' %}"></script>
     <script>
         // Add sorting functionality to event table
         new Tablesort(document.getElementById("event-list"));
+
+        // event handler to toggle filter form
+        u('#filter-toggle').on('click', () => {
+            u('#filter-form-container').toggleClass('hidden');
+        });
+
+        // event handler to reset filter form
+        u('#filter-reset').on('click', (event) => {
+            remove_poi();
+            u(event.target).closest('form').first().reset();
+        });
     </script>
 {% endblock %}
