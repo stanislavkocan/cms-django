@@ -370,6 +370,34 @@ input[type=file].image-field {
     z-index: 100;
 }
 
+datalist {
+    width: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+datalist option {
+    margin-top: -23px;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -webkit-flex-basis: 0;
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0;
+    > span {
+        display: inline-block;
+        background-color:  #e2e8f0;
+        border-radius: 50%;
+        padding-left: 8px;
+        width: 25px;
+        height: 25px;
+        font-weight: bolder;
+    }
+}
+
 /* Page Revision Slider */
 #revision-slider {
     -webkit-appearance: none;
@@ -379,8 +407,6 @@ input[type=file].image-field {
     background: #e2e8f0;
     outline: none;
     opacity: 0.7;
-    -webkit-transition: .2s;
-    transition: opacity .2s;
 
     &::-webkit-slider-thumb {
         -webkit-appearance: none;

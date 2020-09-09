@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-09 16:22+0000\n"
+"POT-Creation-Date: 2020-09-24 17:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Integreat <info@integreat-app.de>\n"
 "Language-Team: Integreat <info@integreat-app.de>\n"
@@ -803,7 +803,7 @@ msgstr "Version"
 
 #: templates/events/event_form.html:147 templates/events/event_list.html:48
 #: templates/events/event_list_archived.html:24
-#: templates/pages/page_form.html:151 templates/pages/page_revisions.html:27
+#: templates/pages/page_form.html:151 templates/pages/page_revisions.html:43
 #: templates/pages/page_sbs.html:81 templates/pages/page_sbs.html:148
 #: templates/pages/page_sbs.html:153 templates/pages/page_tree.html:60
 #: templates/pages/page_tree_archived.html:32 templates/pois/poi_form.html:138
@@ -813,8 +813,8 @@ msgid "Status"
 msgstr "Status"
 
 #: templates/events/event_form.html:150 templates/pages/page_form.html:154
-#: templates/pages/page_revisions.html:45
-#: templates/pages/page_revisions.html:59 templates/pages/page_sbs.html:83
+#: templates/pages/page_revisions.html:61
+#: templates/pages/page_revisions.html:75 templates/pages/page_sbs.html:83
 #: templates/pages/page_sbs.html:156 templates/pois/poi_form.html:141
 #: templates/regions/region_form.html:53
 msgid "Permalink"
@@ -828,8 +828,8 @@ msgstr ""
 "generieren"
 
 #: templates/events/event_form.html:163 templates/pages/page_form.html:167
-#: templates/pages/page_revisions.html:47
-#: templates/pages/page_revisions.html:60 templates/pages/page_sbs.html:97
+#: templates/pages/page_revisions.html:63
+#: templates/pages/page_revisions.html:76 templates/pages/page_sbs.html:97
 #: templates/pages/page_sbs.html:169 templates/pages/page_xliff_confirm.html:43
 #: templates/pois/poi_form.html:151
 #: templates/push_notifications/push_notification_form.html:49
@@ -1486,8 +1486,8 @@ msgstr "Revision"
 msgid "Show revisions"
 msgstr "Revisionen anzeigen"
 
-#: templates/pages/page_form.html:170 templates/pages/page_revisions.html:49
-#: templates/pages/page_revisions.html:61 templates/pages/page_sbs.html:100
+#: templates/pages/page_form.html:170 templates/pages/page_revisions.html:65
+#: templates/pages/page_revisions.html:77 templates/pages/page_sbs.html:100
 #: templates/pages/page_sbs.html:172 templates/pages/page_xliff_confirm.html:45
 #: templates/push_notifications/push_notification_form.html:54
 msgid "Content"
@@ -1576,31 +1576,31 @@ msgstr "Diese Seite löschen"
 msgid "Page revisions of \"%(page_title)s\""
 msgstr "Revisionen der Seite \"%(page_title)s\""
 
-#: templates/pages/page_revisions.html:30
+#: templates/pages/page_revisions.html:46
 msgid "This is the revision shown in the apps."
 msgstr "Diese Revision wird in den Apps angezeigt."
 
-#: templates/pages/page_revisions.html:32
+#: templates/pages/page_revisions.html:48
 msgid "This is <b>not</b> the revision shown in the apps."
 msgstr "Diese Revision wird <b>nicht</b> in den Apps angezeigt."
 
-#: templates/pages/page_revisions.html:35
+#: templates/pages/page_revisions.html:51
 msgid "Editor"
 msgstr "Bearbeiter"
 
-#: templates/pages/page_revisions.html:68
+#: templates/pages/page_revisions.html:84
 msgid "Restore this revision as draft"
 msgstr "Diese Revision als Entwurf wiederherstellen"
 
-#: templates/pages/page_revisions.html:71
+#: templates/pages/page_revisions.html:87
 msgid "Restore and publish this revision"
 msgstr "Diese Revision wiederherstellen und veröffentlichen"
 
-#: templates/pages/page_revisions.html:73
+#: templates/pages/page_revisions.html:89
 msgid "Restore this revision and submit for review"
 msgstr "Diese Revision wiederherstellen und zum Review vorlegen"
 
-#: templates/pages/page_revisions.html:78 templates/pages/page_sbs.html:37
+#: templates/pages/page_revisions.html:94 templates/pages/page_sbs.html:37
 msgid "Go Back to Page Editor"
 msgstr "Zurück zum Seiten-Editor"
 

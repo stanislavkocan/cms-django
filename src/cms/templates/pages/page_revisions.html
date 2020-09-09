@@ -18,8 +18,24 @@
 <form method="post" action="{% url 'page_revisions' page_id=page.id region_slug=region.slug language_code=language.code %}">
     {% csrf_token %}
     <div class="w-full mb-20 relative">
-        <input type="range" name="revision" min="1" max="{{ page_translations.count }}" value="{{ selected_revision.version }}" id="revision-slider">
+        <input type="range" name="revision" min="1" max="{{ page_translations.count }}" value="{{ selected_revision.version }}" id="revision-slider" list="steplist">
         <output id="revision-info"></output>
+        <datalist id ="steplist">
+            {% for page_translation in page_translations reversed %}
+                <option>
+                    <span style="
+                        margin-left: -webkit-calc(({{ page_translation.version }} - 1) / ({{ page_translations.count }} - 1) * 100% - ({{ page_translation.version }} - 1) / ({{ page_translations.count }} - 1) * 25px);
+                        margin-left: -moz-calc(({{ page_translation.version }} - 1) / ({{ page_translations.count }} - 1) * 100% - ({{ page_translation.version }} - 1) / ({{ page_translations.count }} - 1) * 25px);
+                        margin-left: calc(({{ page_translation.version }} - 1) / ({{ page_translations.count }} - 1) * 100% - ({{ page_translation.version }} - 1) / ({{ page_translations.count }} - 1) * 25px);
+                        {% if page_translation.version > 9 %}
+                        padding-left: 5px;
+                        {% endif %}
+                    ">
+                        {{ page_translation.version }}
+                    </span>
+                </option>
+            {% endfor %}
+        </datalist>
     </div>
 
     {% for page_translation in page_translations %}
