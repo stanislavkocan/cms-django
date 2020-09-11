@@ -4,37 +4,19 @@ Form for submitting filter requests
 import logging
 
 from django import forms
-from django.utils.translation import ugettext_lazy as _
 
-from ...constants import status as status_constants
+from ...constants import status as status_constants, all_day, recurrence
 
 logger = logging.getLogger(__name__)
-
-RECURRING = "r"
-NOT_RECURRING = "nr"
-ALL_DAY = "ad"
-NOT_ALL_DAY = "nad"
-BOTH = "b"
-
-ALL_DAY_CHOICES = (
-    (BOTH, _("All events")),
-    (ALL_DAY, _("Only all day events")),
-    (NOT_ALL_DAY, _("Only part day events")),
-)
-
-RECURRENCE_CHOICES = (
-    (RECURRING, _("Events and related recurrences")),
-    (NOT_RECURRING, _("Only base events without recurrences")),
-)
 
 
 class EventFilterForm(forms.Form):
     all_day = forms.ChoiceField(
-        widget=forms.RadioSelect, choices=ALL_DAY_CHOICES, required=False
+        widget=forms.RadioSelect, choices=all_day.CHOICES, required=False
     )
 
     recurring = forms.ChoiceField(
-        widget=forms.RadioSelect, choices=RECURRENCE_CHOICES, required=False
+        widget=forms.RadioSelect, choices=recurrence.CHOICES, required=False
     )
 
     after_date = forms.DateField(
@@ -61,5 +43,5 @@ class EventFilterForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.initial["all_day"] = BOTH
-        self.initial["recurring"] = RECURRING
+        self.initial["all_day"] = all_day.BOTH
+        self.initial["recurring"] = recurrence.RECURRING

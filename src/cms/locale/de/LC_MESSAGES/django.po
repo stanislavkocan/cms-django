@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-05 12:39+0000\n"
+"POT-Creation-Date: 2020-09-11 16:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Integreat <info@integreat-app.de>\n"
 "Language-Team: Integreat <info@integreat-app.de>\n"
@@ -76,6 +76,18 @@ msgstr "Gemeindeverband"
 #: constants/administrative_division.py:65
 msgid "Initial reception center"
 msgstr "Erstaufnahmeeinrichtung"
+
+#: constants/all_day.py:8
+msgid "All events"
+msgstr "Alle Veranstaltungen"
+
+#: constants/all_day.py:9
+msgid "Only all day events"
+msgstr "Nur ganztägige Veranstaltungen"
+
+#: constants/all_day.py:10
+msgid "Only part day events"
+msgstr "Keine ganztägigen Veranstaltungen"
 
 #: constants/feedback_emotions.py:19
 msgid "Positive"
@@ -181,6 +193,14 @@ msgstr "PLZ an die URL anhängen"
 msgid "Add postal code to post parameters"
 msgstr "PLZ zu den Post-Parametern hinzufügen"
 
+#: constants/recurrence.py:7
+msgid "Events and related recurrences"
+msgstr "Veranstaltungen und zugehörige Wiederholungen"
+
+#: constants/recurrence.py:8
+msgid "Only base events without recurrences"
+msgstr "Nur Veranstaltungen ohne zugehörige Wiederholungen"
+
 #: constants/region_status.py:18 templates/language_tree/language_tree.html:31
 #: templates/users/admin/list.html:33 templates/users/admin/user.html:82
 #: templates/users/region/list.html:28 templates/users/region/user.html:72
@@ -262,26 +282,6 @@ msgstr "Vierte Woche"
 #: forms/authentication/password_reset_form.py:11
 msgid "The passwords do not match."
 msgstr "Die Passwörter stimmen nicht überein."
-
-#: forms/events/event_filter_form.py:20
-msgid "All events"
-msgstr "Alle Veranstaltungen"
-
-#: forms/events/event_filter_form.py:21
-msgid "Only all day events"
-msgstr "Nur ganztägige Veranstaltungen"
-
-#: forms/events/event_filter_form.py:22
-msgid "Only part day events"
-msgstr "Keine ganztägigen Veranstaltungen"
-
-#: forms/events/event_filter_form.py:26
-msgid "Events and related recurrences"
-msgstr "Veranstaltungen und zugehörige Wiederholungen"
-
-#: forms/events/event_filter_form.py:27
-msgid "Only base events without recurrences"
-msgstr "Nur Veranstaltungen ohne zugehörige Wiederholungen"
 
 #: forms/events/event_form.py:94
 msgid "If the event is not all-day, the start time is required"
@@ -741,8 +741,8 @@ msgstr "Ja, diese Veranstaltung wiederherstellen."
 msgid "Edit event \"%(event_title)s\""
 msgstr "Event \"%(event_title)s\" bearbeiten"
 
-#: templates/events/event_form.html:52 templates/events/event_list.html:132
-#: templates/events/event_list.html:138
+#: templates/events/event_form.html:52 templates/events/event_list.html:133
+#: templates/events/event_list.html:139
 #: templates/events/event_list_archived.html:25
 #: templates/events/event_list_archived.html:31
 #: templates/pages/page_form.html:53 templates/pages/page_tree.html:61
@@ -814,7 +814,7 @@ msgstr "Übersetzung fehlt"
 msgid "Create Translation"
 msgstr "Übersetzung erstellen"
 
-#: templates/events/event_form.html:145 templates/events/event_list.html:130
+#: templates/events/event_form.html:145 templates/events/event_list.html:131
 #: templates/events/event_list_archived.html:23
 #: templates/pages/page_form.html:148 templates/pages/page_sbs.html:79
 #: templates/pages/page_sbs.html:146 templates/pages/page_sbs.html:151
@@ -824,7 +824,7 @@ msgid "Version"
 msgstr "Version"
 
 #: templates/events/event_form.html:147 templates/events/event_list.html:87
-#: templates/events/event_list.html:131
+#: templates/events/event_list.html:132
 #: templates/events/event_list_archived.html:24
 #: templates/pages/page_form.html:150 templates/pages/page_sbs.html:81
 #: templates/pages/page_sbs.html:148 templates/pages/page_sbs.html:153
@@ -889,13 +889,13 @@ msgid "Date"
 msgstr "Datum"
 
 #: templates/events/event_form.html:191 templates/events/event_form.html:205
-#: templates/events/event_list.html:151
+#: templates/events/event_list.html:152
 #: templates/events/event_list_archived.html:44
 msgid "Start"
 msgstr "Beginn"
 
 #: templates/events/event_form.html:195 templates/events/event_form.html:209
-#: templates/events/event_list.html:152
+#: templates/events/event_list.html:153
 #: templates/events/event_list_archived.html:45
 msgid "End"
 msgstr "Ende"
@@ -1082,35 +1082,35 @@ msgstr "Nicht nach"
 msgid "Empty query input"
 msgstr "Sucheingabe löschen"
 
-#: templates/events/event_list.html:105
+#: templates/events/event_list.html:106
 msgid "All day events"
 msgstr "Ganztägige Veranstaltungen"
 
-#: templates/events/event_list.html:109
+#: templates/events/event_list.html:110
 msgid "Recurring events"
 msgstr "Wiederholende Veranstaltungen"
 
-#: templates/events/event_list.html:118
+#: templates/events/event_list.html:119
 msgid "Reset filter"
 msgstr "Filter zurücksetzen"
 
-#: templates/events/event_list.html:121
+#: templates/events/event_list.html:122
 msgid "Apply filter"
 msgstr "Filter anwenden"
 
-#: templates/events/event_list.html:129
+#: templates/events/event_list.html:130
 #: templates/events/event_list_archived.html:22
 #: templates/pages/page_tree_archived.html:30 templates/pois/poi_list.html:47
 #: templates/pois/poi_list_archived.html:30
 msgid "ID"
 msgstr "ID"
 
-#: templates/events/event_list.html:150
+#: templates/events/event_list.html:151
 #: templates/events/event_list_archived.html:43
 msgid "Event location"
 msgstr "Veranstaltungsort"
 
-#: templates/events/event_list.html:153
+#: templates/events/event_list.html:154
 #: templates/events/event_list_archived.html:46
 #: templates/languages/language_list.html:31
 #: templates/offer_templates/offer_template_list.html:29
@@ -1121,7 +1121,7 @@ msgstr "Veranstaltungsort"
 msgid "Options"
 msgstr "Optionen"
 
-#: templates/events/event_list.html:166
+#: templates/events/event_list.html:167
 msgid "No events available yet."
 msgstr "Noch keine Veranstaltungen vorhanden."
 
@@ -2545,13 +2545,13 @@ msgstr "Veranstaltung wurde erfolgreich wiederhergestellt."
 msgid "Event was successfully deleted."
 msgstr "Veranstaltung wurde erfolgreich gelöscht."
 
-#: views/events/event_list_view.py:50
+#: views/events/event_list_view.py:53
 msgid "Please create at least one language node before creating events."
 msgstr ""
 "Bitte erstellen Sie mindestens einen Sprach-Knoten, bevor Sie "
 "Veranstaltungen verwalten."
 
-#: views/events/event_list_view.py:56
+#: views/events/event_list_view.py:59
 msgid "You don't have the permission to edit or create events."
 msgstr ""
 "Sie haben nicht die nötige Berechtigung, um Veranstaltungen zu bearbeiten "
