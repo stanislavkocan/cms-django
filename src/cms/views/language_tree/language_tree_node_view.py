@@ -59,12 +59,12 @@ class LanguageTreeNodeView(PermissionRequiredMixin, TemplateView):
                     language_tree_node_id=language_tree_node_id,
                 )
                 messages.success(
-                    request, _("Language tree node was saved successfully.")
+                    request, _("Language tree node was successfully saved.")
                 )
             else:
                 language_tree_node = form.save_language_node()
                 messages.success(
-                    request, _("Language tree node was created successfully.")
+                    request, _("Language tree node was successfully created.")
                 )
             return redirect(
                 "edit_language_tree_node",

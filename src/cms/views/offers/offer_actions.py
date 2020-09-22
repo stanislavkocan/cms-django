@@ -37,7 +37,7 @@ def deactivate(request, region_slug, offer_template_slug):
     offer.delete()
     messages.success(
         request,
-        _('Offer "%(offer_name)s" was successfully deactivated.')
+        _('Offer was successfully deactivated.')
         % {"offer_name": template.name},
     )
     return redirect(

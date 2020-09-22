@@ -157,19 +157,19 @@ class PageSideBySideView(PermissionRequiredMixin, TemplateView):
                 if published:
                     messages.success(
                         request,
-                        _("Translation was successfully created and published."),
+                        _("Translation was successfully created and published"),
                     )
                 else:
                     messages.success(
-                        request, _("Translation was successfully created.")
+                        request, _("Translation was successfully created")
                     )
             else:
                 if published:
                     messages.success(
-                        request, _("Translation was successfully published.")
+                        request, _("Translation was successfully published")
                     )
                 else:
-                    messages.success(request, _("Translation was successfully saved."))
+                    messages.success(request, _("Translation was successfully saved"))
 
         return render(
             request,

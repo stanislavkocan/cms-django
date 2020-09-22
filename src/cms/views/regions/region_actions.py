@@ -19,6 +19,6 @@ def delete_region(request, *args, **kwargs):
     region = Region.objects.get(slug=kwargs.get("region_slug"))
     region.delete()
 
-    messages.success(request, _("Region was successfully deleted."))
+    messages.success(request, _("Region was successfully deleted"))
 
     return redirect("regions")

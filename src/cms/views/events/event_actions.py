@@ -26,7 +26,7 @@ def archive(request, event_id, region_slug, language_code):
     event.archived = True
     event.save()
 
-    messages.success(request, _("Event was successfully archived."))
+    messages.success(request, _("Event was successfully archived"))
 
     return redirect(
         "events",
@@ -48,7 +48,7 @@ def restore(request, event_id, region_slug, language_code):
     event.archived = False
     event.save()
 
-    messages.success(request, _("Event was successfully restored."))
+    messages.success(request, _("Event was successfully restored"))
 
     return redirect(
         "events",
@@ -66,7 +66,7 @@ def delete(request, event_id, region_slug, language_code):
     if event.recurrence_rule:
         event.recurrence_rule.delete()
     event.delete()
-    messages.success(request, _("Event was successfully deleted."))
+    messages.success(request, _("Event was successfully deleted"))
 
     return redirect(
         "events",
