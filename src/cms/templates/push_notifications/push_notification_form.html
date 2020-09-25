@@ -74,6 +74,9 @@
                             {% blocktrans asvar text_placeholder %}Insert content in {{ other_language }} here{% endblocktrans %}
                             {% render_field form.text placeholder=text_placeholder class="appearance-none block w-full bg-gray-200 text-xl text-gray-800 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-400" %}
                         </div>
+                        <div class="hidden">
+                            {% render_field form.language %}
+                        </div>
                     </div>
                 </div>
             {% endfor %}

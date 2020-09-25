@@ -39,8 +39,12 @@ class PushNotificationView(PermissionRequiredMixin, TemplateView):
             push_notification_translation_formset = formset_factory(PushNotificationTranslationForm)
             push_notification_translation_formset = push_notification_translation_formset(queryset=PushNotificationTranslation.objects.filter(push_notification=push_notification).order_by(language))()
         else:
+            initial_data = []
+            for lang in region.languages:
+                lang_data = {"language": lang.id}
+                initial_data.append(lang_data)
             push_notification_form = PushNotificationForm()
-            push_notification_translation_formset = formset_factory(PushNotificationTranslationForm, min_num=(len(region.languages)-1))()
+            push_notification_translation_formset = formset_factory(PushNotificationTranslationForm, max_num=(len(region.languages)-1))(initial=initial_data)
 
         formset_dict = {}
         i = 0
