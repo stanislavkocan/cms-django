@@ -77,95 +77,29 @@ class PushNotificationView(PermissionRequiredMixin, TemplateView):
         language = Language.objects.get(code=kwargs.get("language_code"))
 
         PushNewsFormset = formset_factory(PushNotificationTranslationForm)
-        formset = PushNewsFormset(request.POST)
-        print(formset.is_valid())
+        translations_formset = PushNewsFormset(request.POST)
+        pn_form = PushNotificationForm(request.POST)
+        if pn_form.is_valid():
+            push_notification = pn_form.save(commit=False)
+            push_notification.region = region
+            push_notification.save()
 
-        # At first check if push notification exists already
-        push_notification = PushNotification.objects.filter(
-            id=kwargs.get("push_notification_id")
-        ).first()
-        if push_notification:
-            push_notification_form = PushNotificationForm(
-                request.POST, instance=push_notification
-            )
-            success_message = _("Push notification saved successfully.")
-        else:
-            push_notification_form = PushNotificationForm(request.POST)
-            success_message = _("Push notification created successfully.")
-
-        # Then check if translation in current language already exists
-        push_notification_translation = PushNotificationTranslation.objects.filter(
-            push_notification=push_notification, language=language
-        )
-        if push_notification_translation.exists():
-            push_notification_translation_form = PushNotificationTranslationForm(
-                request.POST, instance=push_notification_translation.first()
-            )
-        else:
-            push_notification_translation_form = PushNotificationTranslationForm(
-                request.POST
-            )
-
-        # If both forms are valid, save them
-        if (
-            push_notification_form.is_valid()
-            and push_notification_translation_form.is_valid()
-        ):
-            if push_notification:
-                push_notification = push_notification_form.save()
-            else:
-                # The push notification cannot be created directly, because it has a required foreign key to region
-                # (which has to be set indirectly before saving)
-                push_notification = push_notification_form.save(commit=False)
-                push_notification.region = region
-                push_notification.save()
-            if push_notification_translation:
-                push_notification_translation_form.save()
-            else:
-                # The push notification translation cannot be created directly,
-                # because it has a required foreign key to push notifications and languages
-                # (which has to be set indirectly before saving)
-                push_notification_translation = push_notification_translation_form.save(
-                    commit=False
-                )
-                push_notification_translation.push_notification = push_notification
-                push_notification_translation.language = language
-                push_notification_translation.save()
-            messages.success(request, success_message)
-
-            # Check if Save button has been clicked
-            if push_notification_form.data.get("submit_send"):
-
-                push_sent = self.push_sender.send(
-                    region.slug,
-                    push_notification.channel,
-                    push_notification_translation.title,
-                    push_notification_translation.text,
-                    language.code,
-                )
-
-                if push_sent:
-                    push_notification.sent_date = timezone.now()
-                    push_notification.save()
-                    messages.success(
-                        request, _("Push notification was successfully sent.")
-                    )
-                else:
-                    messages.error(
-                        request, _("Error occurred sending the push notification")
-                    )
-
-        else:
-            messages.error(request, _("Errors have occurred."))
+        if translations_formset.is_valid():
+            for form in translations_formset:
+                translation = form.save(commit=False)
+                translation.push_notification = push_notification
+                translation.save()
+            messages.success(request, "Push Notification saved.")
 
         return render(
             request,
             self.template_name,
             {
                 **self.base_context,
-                "push_notification": push_notification,
-                "push_notification_form": push_notification_form,
-                "push_notification_translation_form": push_notification_translation_form,
+                'push_notification': push_notification,
+                #'push_notification_form': push_notification_form,
+                #'formset_dict': formset_dict,
+                #'formset': push_notification_translation_formset,
                 "language": language,
                 "languages": region.languages,
             },
