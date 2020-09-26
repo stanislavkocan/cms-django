@@ -7,7 +7,7 @@ from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.utils.translation import ugettext as _
 from django.views.generic import TemplateView
-from django.forms import formset_factory
+from django.forms import modelformset_factory
 
 from .push_notification_sender import PushNotificationSender
 from ...decorators import region_permission_required
@@ -35,30 +35,22 @@ class PushNotificationView(PermissionRequiredMixin, TemplateView):
         region = Region.objects.get(slug=kwargs.get("region_slug"))
         language = Language.objects.get(code=kwargs.get("language_code"))
         if push_notification:
-            push_notification_form = PushNotificationForm(instance=push_notification)
-            push_notification_translation_formset = formset_factory(PushNotificationTranslationForm)
-            push_notification_translation_formset = push_notification_translation_formset(queryset=PushNotificationTranslation.objects.filter(push_notification=push_notification).order_by(language))()
+            pn_form = PushNotificationForm(instance=push_notification)
+            PNTFormset = modelformset_factory(PushNotificationTranslation, form=PushNotificationTranslationForm, max_num=(len(region.languages)-1))
+            pnt_formset = PNTFormset(queryset=push_notification.translations.order_by("language"))
         else:
             initial_data = []
             for lang in region.languages:
                 lang_data = {"language": lang.id}
                 initial_data.append(lang_data)
-            push_notification_form = PushNotificationForm()
-            push_notification_translation_formset = formset_factory(PushNotificationTranslationForm, max_num=(len(region.languages)-1))(initial=initial_data)
-
-        formset_dict = {}
-        i = 0
-        for form in push_notification_translation_formset:
-            language = region.languages[i]
-            formset_dict[language] = form
-            i = i + 1
+            PNTFormset = PushNotificationForm()
+            pnt_formset = modelformset_factory(PushNotificationTranslation, form=PushNotificationTranslationForm, max_num=(len(region.languages)-1))(initial=initial_data)
 
         return render(request, self.template_name, {
             **self.base_context,
             'push_notification': push_notification,
-            'push_notification_form': push_notification_form,
-            'formset_dict': formset_dict,
-            'formset': push_notification_translation_formset,
+            'push_notification_form': pn_form,
+            'pnt_formset': pnt_formset,
             'language': language,
             'languages': region.languages,
         })
@@ -76,16 +68,16 @@ class PushNotificationView(PermissionRequiredMixin, TemplateView):
         region = Region.objects.get(slug=kwargs.get("region_slug"))
         language = Language.objects.get(code=kwargs.get("language_code"))
 
-        PushNewsFormset = formset_factory(PushNotificationTranslationForm)
-        translations_formset = PushNewsFormset(request.POST)
+        PushNewsFormset = modelformset_factory(PushNotificationTranslation, form=PushNotificationTranslationForm, max_num=(len(region.languages)-1))
+        pnt_formset = PushNewsFormset(request.POST)
         pn_form = PushNotificationForm(request.POST)
         if pn_form.is_valid():
             push_notification = pn_form.save(commit=False)
             push_notification.region = region
             push_notification.save()
 
-        if translations_formset.is_valid():
-            for form in translations_formset:
+        if pnt_formset.is_valid():
+            for form in pnt_formset:
                 translation = form.save(commit=False)
                 translation.push_notification = push_notification
                 translation.save()
@@ -97,9 +89,8 @@ class PushNotificationView(PermissionRequiredMixin, TemplateView):
             {
                 **self.base_context,
                 'push_notification': push_notification,
-                #'push_notification_form': push_notification_form,
-                #'formset_dict': formset_dict,
-                #'formset': push_notification_translation_formset,
+                'push_notification_form': pn_form,
+                'pnt_formset': pnt_formset,
                 "language": language,
                 "languages": region.languages,
             },
