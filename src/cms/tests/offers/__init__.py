@@ -1,4 +1,4 @@
 """
-This package contains all unit tests for pages.
+This package contains all unit tests for offers.
 """
 from .models import *

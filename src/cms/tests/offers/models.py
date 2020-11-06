@@ -27,13 +27,13 @@ class OfferTest(TestCase):
 
     def test_offer_slug(self):
         """
-        Slug of offer is inherited from its template.
+        Checks if slug of offer is inherited from its template correctly.
         """
         self.assertEqual(self.offer1.slug, self.offer1_template.slug)
 
     def test_offer_name(self):
         """
-        Name of offer is inherited from its template.
+        Checks if name of offer is inherited from its template correctly.
         """
         self.assertTrue(self.offer1.name == "")
 
@@ -42,7 +42,7 @@ class OfferTest(TestCase):
 
     def test_offer_thumbnail(self):
         """
-        Thumbnail of offer is inherited from its template.
+        Checks if thumbnail of offer is inherited from its template correctly.
         """
         self.assertTrue(self.offer1.thumbnail == "")
 
@@ -51,7 +51,7 @@ class OfferTest(TestCase):
 
     def test_offer_url(self):
         """
-        Url of offer is inherited from its template.
+        Checks if Url of offer is inherited from its template correctly.
         """
         self.assertEqual(self.offer1.url, self.offer1_template.url)
 
@@ -65,7 +65,7 @@ class OfferTest(TestCase):
 
     def test_post_data(self):
         """
-        Post data of offer is inherited from its template.
+        Checks if Post data of offer is inherited from its template correctly.
         """
         self.offer1_template.use_postal_code = None
         self.assertEqual(self.offer1.post_data, self.offer1_template.post_data)
