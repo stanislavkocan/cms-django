@@ -1,12 +1,12 @@
 from datetime import datetime, time, date
-from dateutil.rrule import weekday, rrule
+from dateutil.rrule import weekday, rrule, DAILY, WEEKLY, MONTHLY, YEARLY
 
 from django.db import models
 
 from .recurrence_rule import RecurrenceRule
 from ..pois.poi import POI
 from ..regions.region import Region, Language
-from ...constants import frequency, status
+from ...constants import status
 
 
 class Event(models.Model):
@@ -139,14 +139,14 @@ class Event(models.Model):
                     time.max,
                 ),
             )
-            if recurrence.frequency in (frequency.DAILY, frequency.YEARLY):
+            if recurrence.frequency in (DAILY, YEARLY):
                 occurrences = rrule(
                     recurrence.frequency,
                     dtstart=event_start,
                     interval=recurrence.interval,
                     until=until,
                 )
-            elif recurrence.frequency == frequency.WEEKLY:
+            elif recurrence.frequency == WEEKLY:
                 occurrences = rrule(
                     recurrence.frequency,
                     dtstart=event_start,

@@ -30,7 +30,7 @@ class RecurrenceRule(models.Model):
     )
     interval = models.IntegerField(default=1, validators=[MinValueValidator(1)])
     weekdays_for_weekly = ArrayField(
-        models.IntegerField(choices=weekdays.CHOICES), blank=True
+        models.IntegerField(choices=weekdays.CHOICES), blank=True, null=True
     )
     weekday_for_monthly = models.IntegerField(
         choices=weekdays.CHOICES, null=True, blank=True

@@ -1,5 +1,5 @@
 """
-This is a collection of unit tests for the offer and offer template model.
+This is a collection of unit tests for the Offer and OfferTemplate model
 """
 
 from django.test import TestCase
@@ -14,7 +14,7 @@ class OfferTest(TestCase):
 
     def setUp(self):
         """
-        Setup run to create a region and offer objects.
+        Setup run to create a Region, Offer and OfferTemplate objects
         """
         self.region = Region.objects.create(
             aliases=[], push_notification_channels=[], slug="testregion"
@@ -29,6 +29,10 @@ class OfferTest(TestCase):
         """
         Checks if slug of offer is inherited from its template correctly.
         """
+
+        self.assertEqual(self.offer1.slug, self.offer1_template.slug)
+
+        self.offer1_template.slug = "testregion_changed"
         self.assertEqual(self.offer1.slug, self.offer1_template.slug)
 
     def test_offer_name(self):
@@ -40,6 +44,9 @@ class OfferTest(TestCase):
         self.offer1_template.name = "test_name"
         self.assertEqual(self.offer1.name, self.offer1_template.name)
 
+        self.offer1_template.name = "test_name_changed"
+        self.assertEqual(self.offer1.name, self.offer1_template.name)
+
     def test_offer_thumbnail(self):
         """
         Checks if thumbnail of offer is inherited from its template correctly.
@@ -47,6 +54,9 @@ class OfferTest(TestCase):
         self.assertTrue(self.offer1.thumbnail == "")
 
         self.offer1_template.thumbnail = "test_thumbnail"
+        self.assertEqual(self.offer1.thumbnail, self.offer1_template.thumbnail)
+
+        self.offer1_template.thumbnail = "test_thumbnail_changed"
         self.assertEqual(self.offer1.thumbnail, self.offer1_template.thumbnail)
 
     def test_offer_url(self):
