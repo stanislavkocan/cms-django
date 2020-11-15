@@ -18,7 +18,7 @@ from django.views.generic import TemplateView
 from ...constants import status
 from ...decorators import region_permission_required
 from ...forms.pages import PageForm, PageTranslationForm
-from ...models import PageTranslation, Region
+from ...models import PageTranslation, Region, Page
 
 logger = logging.getLogger(__name__)
 
@@ -39,6 +39,7 @@ class PageView(PermissionRequiredMixin, TemplateView):
 
         # get page and translation objects if they exist
         page = region.pages.filter(id=kwargs.get("page_id")).first()
+        # page = Page.objects.prefetch_related("translations", "children").filter(page__region=region, page__id=kwargs.get("page_id")).first()
         page_translation = PageTranslation.objects.filter(
             page=page,
             language=language,

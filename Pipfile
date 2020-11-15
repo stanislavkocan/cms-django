@@ -23,6 +23,10 @@ sphinx-rtd-theme = "*"
 
 [packages]
 integreat-cms = {editable = true, path = "."}
+django-debug-toolbar = "*"
+django-auto-prefetch = "*"
+django-nplusone = "*"
+nplusone = "*"
 
 [requires]
 python_version = "3.7"

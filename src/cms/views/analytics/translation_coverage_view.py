@@ -25,7 +25,12 @@ class TranslationCoverageView(TemplateView):
         languages = []
 
         for language in region.languages:
-            page_translations = PageTranslation.get_translations(region, language)
+            # page_translations = PageTranslation.get_translations(region, language)
+            page_translations = (
+                PageTranslation.objects.select_related("language", "page")
+                .filter(page__region=region, language=language)
+                .distinct("page")
+            )
             languages.append(
                 {
                     "translated_name": language.translated_name,

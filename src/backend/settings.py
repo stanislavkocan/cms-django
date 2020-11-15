@@ -36,6 +36,7 @@ Default: ``True``
 Whether or not the GVZ (Gemeindeverzeichnis) API is enabled (see :mod:`gvz_api` for more information).
 """
 import os
+import logging
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -85,6 +86,8 @@ INSTALLED_APPS = [
     "filer",
     "mptt",
     "rules.apps.AutodiscoverRulesConfig",
+    "nplusone.ext.django",
+    "debug_toolbar",
 ]
 
 MIDDLEWARE = [
@@ -97,6 +100,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "nplusone.ext.django.NPlusOneMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = "backend.urls"
@@ -188,6 +193,8 @@ USE_L10N = True
 
 USE_TZ = True
 
+NPLUSONE_LOGGER = logging.getLogger("nplusone")
+NPLUSONE_LOG_LEVEL = logging.WARN
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
@@ -241,6 +248,10 @@ LOGGING = {
         },
     },
     "loggers": {
+        "nplusone": {
+            "handlers": ["console"],
+            "level": "WARN",
+        },
         "django": {
             "handlers": ["console"],
             "level": "WARN",
@@ -327,3 +338,7 @@ CORS_ALLOW_HEADERS = [
 ]
 
 TEST_BLOG_ID = 154
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]

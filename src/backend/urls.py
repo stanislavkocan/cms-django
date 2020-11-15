@@ -16,6 +16,8 @@ Additionally, the error handlers in :mod:`cms.views.error_handler` are reference
 
 For more information on this file, see :doc:`topics/http/urls`.
 """
+import debug_toolbar
+from django.urls import path
 from django.conf.urls import include, url
 from django.contrib import admin
 
@@ -26,6 +28,7 @@ urlpatterns = [
     url(r"^i18n/", include("django.conf.urls.i18n")),
     url(r"^", include("sitemap.urls")),
     url(r"^", include("cms.urls")),
+    path("__debug__/", include(debug_toolbar.urls)),
 ]
 
 handler400 = "cms.views.error_handler.handler400"
